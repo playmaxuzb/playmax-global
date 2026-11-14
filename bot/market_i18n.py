@@ -49,17 +49,78 @@ M = {
 }
 
 RULES = (
-"📜 <b>PLAYMAX Market</b>\n\n"
-"🇦🇫 فقط آگهی‌های فروش از طریق ربات و پیشنهاد قیمت به‌صورت ریپلای زیر آگهی. دشنام، توهین، لینک و تبلیغ دیگر ممنوع است. ۳ اخطار = اخراج.\n\n"
-"🇺🇿 Faqat bot orqali sotuv e'lonlari va e'lon ostida javob tariqasida narx takliflari. So‘kinish, haqorat, havola va boshqa reklama taqiqlanadi. 3 ogohlantirish = chiqarish.\n\n"
-"🇷🇺 Только объявления о продаже через бота и предложения цены ответом под объявлением. Мат, оскорбления, ссылки и чужая реклама запрещены. 3 предупреждения = бан.\n\n"
-"🇬🇧 Only sale listings posted through the bot, and price offers as replies under a listing. Swearing, insults, links and other ads are banned. 3 warnings = removal.\n\n"
-"🇸🇦 فقط إعلانات البيع عبر البوت، وعروض السعر كرد تحت الإعلان. ممنوع السب والإهانة والروابط والإعلانات الأخرى. 3 تحذيرات = طرد."
+"🏛 <b>PLAYMAX MARKET — MARKET CHARTER</b>\n"
+"<i>Official trading floor for arcade & entertainment equipment</i>\n"
+"━━━━━━━━━━━━━━━━━━\n\n"
+
+"🇦🇫 <b>منشور بازار</b>\n"
+"۱. این بازار فقط برای خرید و فروش تجهیزات بازی و سرگرمی است.\n"
+"۲. آگهی فروش فقط از طریق ربات رسمی منتشر می‌شود.\n"
+"۳. پیشنهاد قیمت و سؤال فقط با ریپلای روی آگهی.\n"
+"۴. احترام متقابل الزامی است؛ هر نوع دشنام و توهین ممنوع است.\n"
+"۵. لینک، تبلیغ بیرونی و پیام فورواردی ممنوع است.\n"
+"۶. صحت آگهی بر عهده فروشنده است و معامله مستقیم بین طرفین انجام می‌شود.\n\n"
+
+"🇺🇿 <b>Bozor nizomi</b>\n"
+"1. Bozor faqat o‘yin va ko‘ngilochar uskunalar savdosi uchun.\n"
+"2. Sotuv e'lonlari faqat rasmiy bot orqali joylanadi.\n"
+"3. Narx taklifi va savollar — faqat e'longa javob tariqasida.\n"
+"4. O‘zaro hurmat majburiy; har qanday so‘kinish va haqorat taqiqlanadi.\n"
+"5. Havolalar, tashqi reklama va forward xabarlar taqiqlanadi.\n"
+"6. E'lon to‘g‘riligi uchun sotuvchi javobgar; bitim tomonlar o‘rtasida tuziladi.\n\n"
+
+"🇷🇺 <b>Устав рынка</b>\n"
+"1. Рынок предназначен только для купли-продажи игрового и развлекательного оборудования.\n"
+"2. Объявления о продаже публикуются исключительно через официального бота.\n"
+"3. Предложения цены и вопросы — только ответом на объявление.\n"
+"4. Взаимное уважение обязательно; любые оскорбления и нецензурная лексика запрещены.\n"
+"5. Запрещены ссылки, сторонняя реклама и пересланные сообщения.\n"
+"6. За достоверность объявления отвечает продавец; сделка заключается напрямую между сторонами.\n\n"
+
+"🇬🇧 <b>Market Charter</b>\n"
+"1. This market is exclusively for buying and selling arcade and entertainment equipment.\n"
+"2. Sale listings are published only through the official bot.\n"
+"3. Price offers and questions are made only as replies to a listing.\n"
+"4. Mutual respect is mandatory; any profanity or insult is prohibited.\n"
+"5. Links, outside advertising and forwarded messages are not permitted.\n"
+"6. Sellers are responsible for the accuracy of their listings; deals are made directly between the parties.\n\n"
+
+"🇸🇦 <b>ميثاق السوق</b>\n"
+"١. السوق مخصّص حصراً لبيع وشراء أجهزة الألعاب والترفيه.\n"
+"٢. تُنشر إعلانات البيع عبر البوت الرسمي فقط.\n"
+"٣. تُقدَّم عروض الأسعار والاستفسارات بالرد المباشر على الإعلان.\n"
+"٤. الاحترام المتبادل أساس التعامل، ويُمنع السبّ والإساءة بأي شكل.\n"
+"٥. يُمنع نشر الروابط والإعلانات الخارجية والرسائل المُعاد توجيهها.\n"
+"٦. البائع مسؤول عن صحة بيانات إعلانه، وتتم الصفقات بين الأطراف مباشرة.\n\n"
+
+"━━━━━━━━━━━━━━━━━━\n"
+"⚖️ <b>Enforcement · اجرا · Ijro · Санкции · الإجراءات</b>\n"
+"1️⃣ Warning · اخطار · Ogohlantirish · Предупреждение · تنبيه\n"
+"2️⃣ 24h suspension · تعلیق ۲۴ ساعته · 24 soat cheklov · Ограничение 24 ч · إيقاف 24 ساعة\n"
+"3️⃣ Permanent removal · اخراج دائم · Butunlay chiqarish · Исключение навсегда · استبعاد نهائي"
 )
 
-WARN = "⚠️ {name}: 🇦🇫 قوانین بازار رعایت نشد | 🇺🇿 Bozor qoidasi buzildi | 🇷🇺 Нарушение правил | 🇬🇧 Rule broken | 🇸🇦 مخالفة للقوانين — {n}/3"
-ONLY_REPLIES = "ℹ️ {name}: 🇦🇫 فقط ریپلای زیر آگهی | 🇺🇿 Faqat e'longa javob | 🇷🇺 Только ответом на объявление | 🇬🇧 Reply to a listing only | 🇸🇦 الرد على إعلان فقط"
-WELCOME = "👋 {name} — 🇦🇫 خوش آمدید | 🇺🇿 Xush kelibsiz | 🇷🇺 Добро пожаловать | 🇬🇧 Welcome | 🇸🇦 أهلاً بك"
+WARN = (
+"⚖️ <b>{name}</b> · {n}/3\n"
+"🇦🇫 پیام شما با منشور بازار مطابقت نداشت و حذف شد.\n"
+"🇺🇿 Xabaringiz bozor nizomiga mos kelmadi va o‘chirildi.\n"
+"🇷🇺 Сообщение не соответствует уставу рынка и удалено.\n"
+"🇬🇧 Your message did not comply with the Market Charter and was removed.\n"
+"🇸🇦 رسالتك لا تتوافق مع ميثاق السوق وتم حذفها."
+)
+ONLY_REPLIES = (
+"ℹ️ <b>{name}</b>\n"
+"🇦🇫 برای پیشنهاد قیمت روی آگهی ریپلای کنید؛ برای فروش از دکمه زیر استفاده کنید.\n"
+"🇺🇿 Narx taklifi uchun e'longa javob yozing; sotish uchun pastdagi tugmani bosing.\n"
+"🇷🇺 Чтобы предложить цену, ответьте на объявление; чтобы продать — нажмите кнопку ниже.\n"
+"🇬🇧 To make an offer, reply to a listing; to sell, use the button below.\n"
+"🇸🇦 لتقديم عرض سعر رُدّ على الإعلان، وللبيع استخدم الزر بالأسفل."
+)
+WELCOME = (
+"👋 <b>{name}</b>\n"
+"🇦🇫 به بازار PLAYMAX خوش آمدید · 🇺🇿 PLAYMAX bozoriga xush kelibsiz · 🇷🇺 Добро пожаловать на рынок PLAYMAX · "
+"🇬🇧 Welcome to PLAYMAX Market · 🇸🇦 أهلاً بك في سوق PLAYMAX"
+)
 
 TYPES = {
 "boxing": "🥊 Boxing · Бокс · بوکس",

@@ -291,7 +291,7 @@ def group_message(msg):
         call("deleteMessage", chat_id=MARKET_CHAT, message_id=msg["message_id"])
         for u in msg["new_chat_members"]:
             if not u.get("is_bot"):
-                temp(MARKET_CHAT, WELCOME.format(name=esc(u.get("first_name", ""))) + "\n\n" + RULES, 90,
+                temp(MARKET_CHAT, WELCOME.format(name=esc(u.get("first_name", ""))), 60,
                      kb([[("➕ Sell · Продать · فروش", deep("sell"))]]))
         return
     if msg.get("left_chat_member") or msg.get("pinned_message"):
@@ -338,9 +338,17 @@ def tick():
 
 
 def setup_group():
-    """Pin multilingual rules once."""
+    """Pin the multilingual charter; update it in place when the text changes."""
+    import hashlib
+    h = hashlib.md5(RULES.encode()).hexdigest()
+    markup = kb([[("➕ Sell a machine · فروش ماشین · بيع جهاز", deep("sell"))]])
     if DB.get("rules_msg"):
+        if DB.get("rules_hash") != h:
+            call("editMessageText", chat_id=MARKET_CHAT, message_id=DB["rules_msg"], text=RULES, parse_mode="HTML", reply_markup=markup)
+            DB["rules_hash"] = h
+            STATE["dirty"] = True
         return
+    DB["rules_hash"] = h
     res = call("sendMessage", chat_id=MARKET_CHAT, text=RULES, parse_mode="HTML",
                reply_markup=kb([[("➕ Sell a machine · Продать · فروش ماشین", deep("sell"))]]))
     if res:
