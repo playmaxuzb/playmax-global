@@ -14,7 +14,7 @@ os.makedirs(os.path.join(ROOT, "data"), exist_ok=True)
 print("bot:", me.get("username"))
 
 ups = call("getUpdates", timeout=0) or []
-dbg = [f"me: {me.get('username')} {me.get('can_read_all_group_messages')}", f"webhook: {(call('getWebhookInfo') or {}).get('url')!r}", f"updates: {len(ups)}"]
+dbg = [f"me: {me.get('username')} name={me.get('first_name')} {me.get('can_read_all_group_messages')}", f"webhook: {(call('getWebhookInfo') or {}).get('url')!r}", f"updates: {len(ups)}"]
 for u in ups:
     dbg.append(" ".join(f"{k}:{u[k].get('chat',{}).get('type')}:{u[k].get('chat',{}).get('id')}" for k in u if isinstance(u[k], dict)))
 open(os.path.join(ROOT, "data", "debug.txt"), "w").write("\n".join(dbg))
