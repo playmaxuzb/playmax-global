@@ -1,2 +1,4 @@
+me: PLAYMAXCatalogBot True
 webhook: ''
 updates: 0
+main channel status: None
