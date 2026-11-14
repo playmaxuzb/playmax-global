@@ -1,4 +1,4 @@
-me: PLAYMAXCatalogBot True
+me: PLAYMAXCatalogBot name=PLAYMAX Assistant True
 webhook: ''
 updates: 0
 main channel status: None
