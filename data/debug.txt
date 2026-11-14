@@ -2,5 +2,5 @@ me: PLAYMAXCatalogBot name=PLAYMAX Assistant True
 webhook: ''
 updates: 0
 errors: {}
-errors2: {'getChatAdministrators': 'Bad Request: member list is inaccessible', 'getChatMember': 'Bad Request: member list is inaccessible'}
-main channel status: None
+errors2: {}
+main channel status: administrator
