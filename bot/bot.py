@@ -292,10 +292,12 @@ def code_hash():
 def refresh_content():
     """Pull new content; return True when the bot code itself changed (time to restart)."""
     global POSTS
-    before = code_hash()
     subprocess.run(["git", "pull", "-q", "--rebase", "--autostash"], cwd=ROOT)
     POSTS = content.load_all()
-    return code_hash() != before
+    return code_hash() != START_HASH
+
+
+START_HASH = code_hash()
 
 
 def main():
