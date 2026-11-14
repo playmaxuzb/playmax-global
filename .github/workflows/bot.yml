@@ -1,0 +1,23 @@
+name: bot
+on:
+  schedule:
+    - cron: "17 * * * *"
+  push:
+    paths: ["ops/restart-bot"]
+  workflow_dispatch:
+concurrency:
+  group: bot
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          git config user.name "PlayMax Bot"; git config user.email "playmax.uzb@gmail.com"
+          cd bot && python3 bot.py
+        env:
+          TG_AF_TOKEN: ${{ secrets.TG_AF_TOKEN }}

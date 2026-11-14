@@ -1,0 +1,22 @@
+name: post
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  push:
+    paths: ["content/**", "ops/post-now"]
+  workflow_dispatch:
+concurrency:
+  group: post
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          git config user.name "PlayMax Bot"; git config user.email "playmax.uzb@gmail.com"
+          cd bot && python3 post.py
+        env:
+          TG_AF_TOKEN: ${{ secrets.TG_AF_TOKEN }}

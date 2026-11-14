@@ -7,7 +7,7 @@ import time
 import content
 from config import LANGS, FLAGS, LANG_NAMES, LINKS, OFFICE, FACTORY, map_lang, PHONE_AF
 from i18n import t
-from tg import call, kb
+from tg import call, kb, LAST_ERROR
 
 ROOT = content.ROOT
 USERS_F = os.path.join(ROOT, "data", "users.json")
@@ -23,6 +23,19 @@ def load_users():
 
 
 USERS = load_users()
+CHATS_F = os.path.join(ROOT, "data", "chats.json")
+try:
+    CHATS = json.load(open(CHATS_F, encoding="utf8"))
+except Exception:
+    CHATS = {}
+STATUS = {"updates": 0, "started": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())}
+
+
+def note_chat(chat):
+    global DIRTY
+    if chat.get("type") in ("group", "supergroup", "channel") and str(chat["id"]) not in CHATS:
+        CHATS[str(chat["id"])] = {"title": chat.get("title"), "type": chat["type"], "username": chat.get("username")}
+        DIRTY = True
 POSTS = content.load_all()
 DIRTY = False
 
@@ -124,10 +137,15 @@ def send_post(chat, pid, lang):
 
 
 # ---------- handlers ----------
+def market_hook(msg):
+    """Replaced by market.py moderation once the market module is loaded."""
+    return None
+
+
 def on_message(msg):
     chat = msg["chat"]["id"]
     if msg["chat"]["type"] != "private":
-        return
+        return market_hook(msg)
     user = msg["from"]
     text = msg.get("text", "")
     lang = lang_of(user)
@@ -184,9 +202,15 @@ def save_users(push=False):
     os.makedirs(os.path.dirname(USERS_F), exist_ok=True)
     with open(USERS_F, "w", encoding="utf8") as f:
         json.dump(USERS, f)
+    with open(CHATS_F, "w", encoding="utf8") as f:
+        json.dump(CHATS, f, indent=1, ensure_ascii=False)
+    STATUS["errors"] = dict(LAST_ERROR)
+    STATUS["saved"] = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())
+    with open(os.path.join(ROOT, "data", "status.json"), "w") as f:
+        json.dump(STATUS, f, indent=1)
     DIRTY = False
     if push:
-        git_sync(["data/users.json"], "bot: save language choices")
+        git_sync(["data/users.json", "data/chats.json", "data/status.json"], "bot: save state")
 
 
 def git_sync(files, message):
@@ -215,9 +239,14 @@ def main():
     last_refresh = time.time()
     print("bot started, posts:", len(POSTS))
     while time.time() - start < RUN_SECONDS:
-        updates = call("getUpdates", offset=offset, timeout=50, allowed_updates=["message", "callback_query"]) or []
+        updates = call("getUpdates", offset=offset, timeout=50,
+                       allowed_updates=["message", "callback_query", "my_chat_member", "channel_post", "edited_message"]) or []
         for u in updates:
             offset = u["update_id"] + 1
+            STATUS["updates"] += 1
+            for k in ("message", "my_chat_member", "channel_post", "edited_message"):
+                if k in u:
+                    note_chat(u[k]["chat"])
             try:
                 if "message" in u:
                     on_message(u["message"])
@@ -225,7 +254,8 @@ def main():
                     on_callback(u["callback_query"])
             except Exception as e:
                 print("[handler]", e)
-        if time.time() - last_refresh > 900:
+        if time.time() - last_refresh > (120 if time.time() - start < 1800 else 900):
+            globals()["DIRTY"] = True
             save_users(push=True)
             refresh_content()
             last_refresh = time.time()
