@@ -1,0 +1,101 @@
+[
+{
+ "id": "w1d1p1", "date": "2026-11-15", "time": "10:00", "type": "photo", "media": "media/w1/d1/p1.jpg", "lang": "fa", "pin": true,
+ "text": {
+  "fa": "🌍 <b>به PLAYMAX Global خوش آمدید</b>\n\nکانال رسمی PLAYMAX برای همه کشورها — به ۵ زبان.\nما ماشین‌های بوکس، ماشین‌های جایزه و تجهیزات سرگرمی را خودمان تولید می‌کنیم.\n\n👇 زبان خود را از دکمه‌های پایین انتخاب کنید تا همه پست‌ها به زبان شما برسد.",
+  "uz": "🌍 <b>PLAYMAX Global'ga xush kelibsiz</b>\n\nPLAYMAX'ning barcha davlatlar uchun rasmiy kanali — 5 tilda.\nBoks avtomatlari, sovg‘a avtomatlari va ko‘ngilochar uskunalarni o‘zimiz ishlab chiqaramiz.\n\n👇 Tilingizni tanlang — barcha postlar sizga o‘z tilingizda keladi.",
+  "ru": "🌍 <b>Добро пожаловать в PLAYMAX Global</b>\n\nОфициальный канал PLAYMAX для всех стран — на 5 языках.\nМы сами производим боксёрские автоматы, призовые автоматы и развлекательное оборудование.\n\n👇 Выберите свой язык — и все посты будут приходить вам на нём.",
+  "en": "🌍 <b>Welcome to PLAYMAX Global</b>\n\nThe official PLAYMAX channel for every country — in 5 languages.\nWe build our own boxing machines, prize machines and entertainment equipment.\n\n👇 Pick your language and every post will reach you in it.",
+  "ar": "🌍 <b>أهلاً بك في PLAYMAX Global</b>\n\nالقناة الرسمية لـ PLAYMAX لكل الدول — بخمس لغات.\nنصنع بأنفسنا أجهزة الملاكمة وأجهزة الجوائز ومعدات الترفيه.\n\n👇 اختر لغتك من الأزرار، وكل المنشورات بتوصلك بلغتك."
+ }
+},
+{
+ "id": "w1d1p2", "date": "2026-11-15", "time": "11:30", "type": "video", "media": "media/w1/d1/v1.mp4", "lang": "ru",
+ "text": {
+  "fa": "🎨 <b>یک ماشین — ۵ رنگ</b>\n\nبوکس MANGU MMA را به رنگ برند خودتان سفارش دهید: سرخ، آبی، سبز، سیاه یا سفید.\nرنگ را در سایت انتخاب کنید و ماشین را سه‌بعدی ببینید.",
+  "uz": "🎨 <b>Bitta avtomat — 5 xil rang</b>\n\nMANGU MMA boks avtomatini o‘z brendingiz rangida buyurtma qiling: qizil, ko‘k, yashil, qora yoki oq.\nRangni saytda tanlang va avtomatni 3D'da ko‘ring.",
+  "ru": "🎨 <b>Один автомат — 5 цветов</b>\n\nБоксёрский MANGU MMA можно заказать в цвете вашего бренда: красный, синий, зелёный, чёрный или белый.\nВыберите цвет на сайте и посмотрите автомат в 3D.",
+  "en": "🎨 <b>One machine — 5 colours</b>\n\nOrder the MANGU MMA boxing machine in your brand's colour: red, blue, green, black or white.\nPick the colour on our website and see the machine in 3D.",
+  "ar": "🎨 <b>جهاز واحد — 5 ألوان</b>\n\nاطلب جهاز الملاكمة MANGU MMA بلون علامتك التجارية: أحمر، أزرق، أخضر، أسود أو أبيض.\nاختر اللون من الموقع وشاهد الجهاز بتقنية 3D."
+ }
+},
+{
+ "id": "w1d1p3", "date": "2026-11-15", "time": "13:00", "type": "poll", "lang": "uz",
+ "poll": {
+  "q": {
+   "fa": "🥊 ماشین بوکس را کجا بگذاریم که بیشترین درآمد را داشته باشد؟",
+   "uz": "🥊 Boks avtomatini qayerga qo‘ysa eng ko‘p daromad keltiradi?",
+   "ru": "🥊 Где боксёрский автомат принесёт больше всего дохода?",
+   "en": "🥊 Where does a boxing machine earn the most?",
+   "ar": "🥊 وين جهاز الملاكمة بيجيب أكثر دخل؟"
+  },
+  "o": {
+   "fa": ["🛍 مرکز خرید", "☕ کافه و رستوران", "🌳 پارک", "🏋️ باشگاه ورزشی", "🎡 مرکز سرگرمی کودکان"],
+   "uz": ["🛍 Savdo markazi", "☕ Kafe va restoran", "🌳 Park", "🏋️ Sport zal", "🎡 Bolalar ko‘ngilochar markazi"],
+   "ru": ["🛍 Торговый центр", "☕ Кафе и ресторан", "🌳 Парк", "🏋️ Спортзал", "🎡 Детский развлекательный центр"],
+   "en": ["🛍 Shopping mall", "☕ Café & restaurant", "🌳 Park", "🏋️ Gym", "🎡 Kids' entertainment centre"],
+   "ar": ["🛍 مول تجاري", "☕ كافيه ومطعم", "🌳 حديقة", "🏋️ نادي رياضي", "🎡 مركز ترفيه أطفال"]
+  }
+ }
+},
+{
+ "id": "w1d1p4", "date": "2026-11-15", "time": "14:30", "type": "photo", "media": "media/w1/d1/p2.jpg", "lang": "en",
+ "text": {
+  "fa": "🏭 <b>۲ کشور — ۳ مکان</b>\n\n🏢 دفتر تاشکند: دیدن ماشین‌ها از نزدیک، مشاوره و سفارش\n🏭 فابریکه تاشکند: تولید، مونتاژ و آزمایش\n🏭 فابریکه مزارشریف: تولید، تحویل و خدمات در افغانستان\n\n📍 آدرس و نقشه در ربات ← «دفتر و فابریکه»",
+  "uz": "🏭 <b>2 davlat — 3 manzil</b>\n\n🏢 Toshkent ofisi: avtomatlarni ko‘rish, maslahat va buyurtma\n🏭 Toshkent zavodi: ishlab chiqarish, yig‘ish va sinov\n🏭 Mozori Sharif zavodi: Afg‘onistonda ishlab chiqarish, yetkazish va servis\n\n📍 Manzil va xarita botda → «Ofis va zavodlar»",
+  "ru": "🏭 <b>2 страны — 3 точки</b>\n\n🏢 Офис в Ташкенте: посмотреть автоматы, консультация и заказ\n🏭 Завод в Ташкенте: производство, сборка и тестирование\n🏭 Завод в Мазари-Шарифе: производство, доставка и сервис по Афганистану\n\n📍 Адреса и карта в боте → «Офис и заводы»",
+  "en": "🏭 <b>2 countries — 3 locations</b>\n\n🏢 Tashkent office: see the machines, get advice, place orders\n🏭 Tashkent factory: production, assembly and testing\n🏭 Mazar-i-Sharif factory: production, delivery and service in Afghanistan\n\n📍 Addresses and maps in the bot → “Office & factories”",
+  "ar": "🏭 <b>دولتان — 3 مواقع</b>\n\n🏢 مكتب طشقند: معاينة الأجهزة، استشارة وطلب\n🏭 مصنع طشقند: تصنيع وتجميع واختبار\n🏭 مصنع مزار الشريف: تصنيع وتوصيل وخدمة داخل أفغانستان\n\n📍 العناوين والخريطة في البوت ← «المكتب والمصانع»"
+ }
+},
+{
+ "id": "w1d1p5", "date": "2026-11-15", "time": "16:00", "type": "photo", "media": "media/w1/d1/p3.jpg", "lang": "ar",
+ "text": {
+  "fa": "👑 <b>KING FIGHTERS — BOX 01</b>\n\nبدنه کاملاً فلزی، ۲۲۱۶ میلی‌متر ارتفاع و ۲۱۰ کیلو — ساخته شده برای کار سنگین هر روزه در مول و پارک.\nمصرف برق فقط ۹۰ وات.\n\nقیمت و رنگ‌ها: در سایت یا با مشاوره رایگان.",
+  "uz": "👑 <b>KING FIGHTERS — BOX 01</b>\n\nTo‘liq metall korpus, balandligi 2216 mm, og‘irligi 210 kg — savdo markazi va parklarda har kungi og‘ir ish uchun.\nElektr sarfi atigi 90 W.\n\nNarx va ranglar — saytda yoki bepul maslahatda.",
+  "ru": "👑 <b>KING FIGHTERS — BOX 01</b>\n\nПолностью металлический корпус, высота 2216 мм, вес 210 кг — создан для ежедневной нагрузки в ТЦ и парках.\nПотребление всего 90 Вт.\n\nЦена и цвета — на сайте или на бесплатной консультации.",
+  "en": "👑 <b>KING FIGHTERS — BOX 01</b>\n\nFull metal body, 2216 mm tall, 210 kg — built for heavy daily use in malls and parks.\nUses only 90 W.\n\nPrice and colours: on the website or in a free consultation.",
+  "ar": "👑 <b>KING FIGHTERS — BOX 01</b>\n\nهيكل معدني بالكامل، ارتفاع 2216 مم ووزن 210 كغ — مصمّم للاستخدام اليومي المكثّف في المولات والحدائق.\nاستهلاك كهرباء 90 واط فقط.\n\nالسعر والألوان: على الموقع أو عبر الاستشارة المجانية."
+ }
+},
+{
+ "id": "w1d1p6", "date": "2026-11-15", "time": "18:00", "type": "video", "media": "media/w1/d1/v2.mp4", "lang": "fa",
+ "text": {
+  "fa": "🧸 <b>ARCADE ZONE</b>\n\nسه مدل ماشین جایزه (چنگک): ASTRO · SPACE · ORBITA\nچراغ‌های LED، بدنه شیشه‌ای و بازی ساده — بچه‌ها و بزرگ‌ها دوباره و دوباره بازی می‌کنند.\n\nبهترین گزینه برای مول، کافه و مرکز سرگرمی.",
+  "uz": "🧸 <b>ARCADE ZONE</b>\n\nUch xil sovg‘a avtomati: ASTRO · SPACE · ORBITA\nLED yoritish, shisha korpus va oddiy o‘yin — bolalar ham, kattalar ham qayta-qayta o‘ynaydi.\n\nSavdo markazi, kafe va ko‘ngilochar markaz uchun eng yaxshi tanlov.",
+  "ru": "🧸 <b>ARCADE ZONE</b>\n\nТри модели призовых автоматов с клешнёй: ASTRO · SPACE · ORBITA\nLED-подсветка, стеклянный корпус и простая игра — и дети, и взрослые играют снова и снова.\n\nЛучший выбор для ТЦ, кафе и развлекательных центров.",
+  "en": "🧸 <b>ARCADE ZONE</b>\n\nThree prize claw machines: ASTRO · SPACE · ORBITA\nLED lights, glass body and simple play — kids and adults keep coming back for one more try.\n\nA top pick for malls, cafés and entertainment centres.",
+  "ar": "🧸 <b>ARCADE ZONE</b>\n\nثلاثة موديلات لأجهزة الجوائز (الكلّاب): ASTRO · SPACE · ORBITA\nإضاءة LED وهيكل زجاجي ولعب بسيط — الصغار والكبار يرجعون يلعبون مرة ومرتين.\n\nخيار ممتاز للمولات والكافيهات ومراكز الترفيه."
+ }
+},
+{
+ "id": "w1d1p7", "date": "2026-11-15", "time": "19:30", "type": "photo", "media": "media/w1/d1/p4.jpg", "lang": "uz", "cta": "sell",
+ "text": {
+  "fa": "🏪 <b>بازار PLAYMAX باز شد</b>\n\nماشین بازی یا سرگرمی دارید که می‌خواهید بفروشید؟ نو یا کارکرده — فرقی ندارد.\n\n📸 عکس و مشخصات را در ربات بفرستید\n💬 خریداران زیر آگهی قیمت پیشنهاد می‌دهند\n🤝 بهترین پیشنهاد را انتخاب کنید\n\nرایگان، منظم و با نظارت کامل.",
+  "uz": "🏪 <b>PLAYMAX bozori ochildi</b>\n\nSotmoqchi bo‘lgan o‘yin yoki ko‘ngilochar avtomatingiz bormi? Yangi yoki ishlatilgan — farqi yo‘q.\n\n📸 Rasm va ma'lumotni botga yuboring\n💬 Xaridorlar e'lon ostida narx taklif qiladi\n🤝 Eng yaxshi taklifni tanlang\n\nBepul, tartibli va to‘liq nazorat ostida.",
+  "ru": "🏪 <b>Открылся рынок PLAYMAX</b>\n\nЕсть игровой или развлекательный автомат на продажу? Новый или б/у — неважно.\n\n📸 Отправьте фото и описание в бот\n💬 Покупатели предлагают цену под объявлением\n🤝 Выбираете лучшее предложение\n\nБесплатно, аккуратно и под модерацией.",
+  "en": "🏪 <b>PLAYMAX Market is open</b>\n\nGot an arcade or entertainment machine to sell? New or used — both welcome.\n\n📸 Send photos and details to the bot\n💬 Buyers make offers under your listing\n🤝 You pick the best offer\n\nFree, organised and fully moderated.",
+  "ar": "🏪 <b>افتتاح سوق PLAYMAX</b>\n\nعندك جهاز ألعاب أو ترفيه بدك تبيعه؟ جديد أو مستعمل — لا فرق.\n\n📸 أرسل الصور والتفاصيل للبوت\n💬 المشترون يقدّمون عروضهم تحت الإعلان\n🤝 وإنت بتختار أفضل عرض\n\nمجاني، منظّم، وتحت إشراف كامل."
+ }
+},
+{
+ "id": "w1d1p8", "date": "2026-11-15", "time": "21:00", "type": "poll", "lang": "ru",
+ "poll": {
+  "quiz": 2,
+  "q": {
+   "fa": "🧠 مسابقه: بوکس MANGU MMA در چند رنگ ساخته می‌شود؟",
+   "uz": "🧠 Viktorina: MANGU MMA boks avtomati nechta rangda chiqariladi?",
+   "ru": "🧠 Викторина: в скольких цветах выпускается MANGU MMA?",
+   "en": "🧠 Quiz: how many colours does the MANGU MMA come in?",
+   "ar": "🧠 مسابقة: بكم لون يُصنع جهاز MANGU MMA؟"
+  },
+  "o": {
+   "fa": ["۱ رنگ", "۳ رنگ", "۵ رنگ", "۸ رنگ"],
+   "uz": ["1 ta", "3 ta", "5 ta", "8 ta"],
+   "ru": ["1 цвет", "3 цвета", "5 цветов", "8 цветов"],
+   "en": ["1 colour", "3 colours", "5 colours", "8 colours"],
+   "ar": ["لون واحد", "3 ألوان", "5 ألوان", "8 ألوان"]
+  }
+ }
+}
+]

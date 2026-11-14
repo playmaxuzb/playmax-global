@@ -22,7 +22,7 @@ def publish(p):
     base = dict(chat_id=CHANNEL, reply_markup=markup)
     if typ == "poll":
         return call("sendPoll", question=p["poll"]["q"][lang], options=[{"text": o} for o in p["poll"]["o"][lang]],
-                    is_anonymous=True, allows_multiple_answers=p["poll"].get("multi", False), **base)
+                    is_anonymous=True, **content.poll_extra(p), **base)
     cap = content.caption(p, lang)
     if typ == "photo":
         return call("sendPhoto", photo=url, caption=cap, parse_mode="HTML", **base)
