@@ -83,6 +83,51 @@ def back(lang, extra=None):
     return kb(rows)
 
 
+def phone_rows():
+    return [
+        [("🇺🇿 Telegram ·99", LINKS["tg_99"]), ("🇺🇿 WhatsApp ·99", LINKS["wa_99"])],
+        [("🇺🇿 Telegram ·79", LINKS["tg_79"]), ("🇺🇿 WhatsApp ·79", LINKS["wa_79"])],
+        [("🇦🇫 Telegram ·11", LINKS["tg_af"]), ("🇦🇫 WhatsApp ·11", LINKS["wa_af"])],
+    ]
+
+
+SUPPORT_WAIT = set()
+
+
+def to_team(msg, lang):
+    """Forward a customer's message to the owner; remember who to answer."""
+    own = market.owner_id()
+    u = msg["from"]
+    if not own or u["id"] == own:
+        return False
+    uname = f" @{u['username']}" if u.get("username") else ""
+    head = call("sendMessage", chat_id=own, parse_mode="HTML",
+                text=f"📩 <b>{(u.get('first_name') or '')} {(u.get('last_name') or '')}</b>{uname} · {FLAGS.get(lang, '')} {lang}\n↩️ Reply to answer")
+    cp = call("copyMessage", chat_id=own, from_chat_id=msg["chat"]["id"], message_id=msg["message_id"])
+    sup = market.DB.setdefault("support", {})
+    for r in (head, cp):
+        if r:
+            sup[str(r["message_id"])] = [u["id"], lang]
+    market.STATE["dirty"] = True
+    call("sendMessage", chat_id=msg["chat"]["id"], text=t("received", lang), reply_markup=menu_kb(lang))
+    return True
+
+
+def from_team(msg):
+    """Owner replied to a forwarded message -> relay to the customer."""
+    reply = msg.get("reply_to_message")
+    if not reply or msg["from"]["id"] != market.owner_id():
+        return False
+    target = market.DB.get("support", {}).get(str(reply["message_id"]))
+    if not target:
+        return False
+    uid, lang = target
+    call("sendMessage", chat_id=uid, text=t("team_reply", lang), parse_mode="HTML")
+    ok = call("copyMessage", chat_id=uid, from_chat_id=msg["chat"]["id"], message_id=msg["message_id"])
+    call("sendMessage", chat_id=msg["chat"]["id"], text="✅ Sent" if ok else "⚠️ Not delivered", reply_to_message_id=msg["message_id"])
+    return True
+
+
 def screen(chat, lang, name, edit_id=None):
     send = dict(chat_id=chat, parse_mode="HTML", disable_web_page_preview=True)
     if name == "menu":
@@ -90,18 +135,22 @@ def screen(chat, lang, name, edit_id=None):
     elif name == "catalog":
         text, markup = t("catalog", lang), back(lang, [[(t("b_site", lang), LINKS["site"])]])
     elif name == "contacts":
-        text, markup = t("contacts", lang), back(lang, [[(t("b_wa", lang), LINKS["wa_af"])], [("✉️ Email", "https://mail.google.com/mail/?view=cm&to=" + LINKS["email"])]])
+        text, markup = t("contacts", lang), back(lang, phone_rows() + [[("✉️ Email", "https://mail.google.com/mail/?view=cm&to=" + LINKS["email"])]])
     elif name == "places":
         text, markup = t("places", lang), back(lang, [[(t("b_office", lang), LINKS["office_map"])], [(t("b_factory", lang), LINKS["factory_map"])], [("📍 PIN", "cb:m:pins")]])
     elif name == "channels":
         text, markup = t("channels", lang), back(lang, [[(t("b_ch_global", lang), LINKS["tg_global"])], [(t("b_ch_uz", lang), LINKS["tg_uz"])]])
     elif name == "social":
         text, markup = t("social", lang), back(lang, [
+            [(t("b_site", lang), LINKS["site"])],
             [("📸 Instagram 🇦🇫", LINKS["ig_af"]), ("📸 Instagram 🇺🇿", LINKS["ig_uz"])],
-            [("🎵 TikTok", LINKS["tiktok"]), ("🔗 All links", LINKS["linkbio"])],
+            [(t("b_ch_global", lang), LINKS["tg_global"]), (t("b_ch_uz", lang), LINKS["tg_uz"])],
         ])
     elif name == "consult":
-        text, markup = t("consult", lang), back(lang, [[(t("b_wa", lang), LINKS["wa_af"])], [(t("b_site", lang), LINKS["site"])]])
+        text, markup = t("consult", lang), back(lang, [[(t("b_write", lang), "cb:m:write")]] + phone_rows())
+    elif name == "write":
+        SUPPORT_WAIT.add(int(chat))
+        text, markup = t("write_now", lang), back(lang)
     elif name == "market":
         return market.show_intro(chat, int(chat), lang)
     elif name == "lang":
@@ -138,6 +187,12 @@ def on_message(msg):
     lang = lang_of(user)
     if market.in_sell(user["id"]) and not text.startswith("/"):
         return market.sell_message(msg, lang)
+    if from_team(msg):
+        return
+    if not text.startswith("/") and (user["id"] in SUPPORT_WAIT or text):
+        SUPPORT_WAIT.discard(user["id"])
+        if to_team(msg, lang):
+            return
     if text.startswith("/start"):
         arg = text.split(" ", 1)[1] if " " in text else ""
         if arg == "sell" or arg == "market" or arg.startswith(("seller_", "photos_")):

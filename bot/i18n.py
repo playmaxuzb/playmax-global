@@ -18,7 +18,7 @@ T = {
 "b_contacts": {"fa": "📞 تماس با ما", "uz": "📞 Aloqa", "ru": "📞 Контакты", "en": "📞 Contact us", "ar": "📞 تواصل معنا"},
 "b_places": {"fa": "📍 دفتر و فابریکه", "uz": "📍 Ofis va zavodlar", "ru": "📍 Офис и заводы", "en": "📍 Office & factories", "ar": "📍 المكتب والمصانع"},
 "b_channels": {"fa": "📢 کانال‌های ما", "uz": "📢 Kanallarimiz", "ru": "📢 Наши каналы", "en": "📢 Our channels", "ar": "📢 قنواتنا"},
-"b_social": {"fa": "📸 اینستاگرام و شبکه‌ها", "uz": "📸 Instagram va tarmoqlar", "ru": "📸 Instagram и соцсети", "en": "📸 Instagram & socials", "ar": "📸 إنستغرام والشبكات"},
+"b_social": {"fa": "🌐 سایت و اینستاگرام", "uz": "🌐 Sayt va Instagram", "ru": "🌐 Сайт и Instagram", "en": "🌐 Website & Instagram", "ar": "🌐 الموقع وإنستغرام"},
 "b_consult": {"fa": "💬 مشاوره رایگان", "uz": "💬 Bepul maslahat", "ru": "💬 Бесплатная консультация", "en": "💬 Free consultation", "ar": "💬 استشارة مجانية"},
 "b_lang": {"fa": "🌐 تغییر زبان", "uz": "🌐 Tilni o‘zgartirish", "ru": "🌐 Сменить язык", "en": "🌐 Change language", "ar": "🌐 تغيير اللغة"},
 "b_back": {"fa": "⬅️ منوی اصلی", "uz": "⬅️ Bosh menyu", "ru": "⬅️ Главное меню", "en": "⬅️ Main menu", "ar": "⬅️ القائمة الرئيسية"},
@@ -28,6 +28,10 @@ T = {
 "b_ch_global": {"fa": "📢 PLAYMAX Global (این کانال)", "uz": "📢 PLAYMAX Global", "ru": "📢 PLAYMAX Global", "en": "📢 PLAYMAX Global", "ar": "📢 PLAYMAX Global"},
 "b_ch_uz": {"fa": "🇺🇿 کانال ازبکستان", "uz": "🇺🇿 O‘zbekiston kanali", "ru": "🇺🇿 Канал Узбекистан", "en": "🇺🇿 Uzbekistan channel", "ar": "🇺🇿 قناة أوزبكستان"},
 "b_wa": {"fa": "💬 واتس‌اپ افغانستان", "uz": "💬 WhatsApp (Afg‘oniston)", "ru": "💬 WhatsApp (Афганистан)", "en": "💬 WhatsApp (Afghanistan)", "ar": "💬 واتساب (أفغانستان)"},
+"b_write": {"fa": "✍️ سؤال خود را بنویسید", "uz": "✍️ Savolingizni yozing", "ru": "✍️ Написать вопрос", "en": "✍️ Write your question", "ar": "✍️ اكتب سؤالك"},
+"write_now": {"fa": "✍️ سؤال یا درخواست خود را همین‌جا بنویسید (متن، عکس یا پیام صوتی). تیم PLAYMAX مستقیم جواب می‌دهد.", "uz": "✍️ Savol yoki so‘rovingizni shu yerga yozing (matn, rasm yoki ovozli xabar). PLAYMAX jamoasi shaxsan javob beradi.", "ru": "✍️ Напишите вопрос или заявку прямо здесь (текст, фото или голосовое). Команда PLAYMAX ответит лично.", "en": "✍️ Type your question or request right here (text, photo or voice). The PLAYMAX team will reply personally.", "ar": "✍️ اكتب سؤالك أو طلبك هنا مباشرة (نص أو صورة أو رسالة صوتية)، وفريق PLAYMAX بيرد عليك شخصياً."},
+"received": {"fa": "✅ پیام شما به تیم PLAYMAX رسید. به‌زودی همین‌جا جواب می‌گیرید.", "uz": "✅ Xabaringiz PLAYMAX jamoasiga yetib bordi. Tez orada shu yerda javob olasiz.", "ru": "✅ Ваше сообщение получено командой PLAYMAX. Ответ придёт сюда в ближайшее время.", "en": "✅ Your message reached the PLAYMAX team. You'll get a reply here shortly.", "ar": "✅ وصلت رسالتك لفريق PLAYMAX، وبيوصلك الرد هون قريباً."},
+"team_reply": {"fa": "💬 <b>PLAYMAX</b>", "uz": "💬 <b>PLAYMAX</b>", "ru": "💬 <b>PLAYMAX</b>", "en": "💬 <b>PLAYMAX</b>", "ar": "💬 <b>PLAYMAX</b>"},
 "b_more_lang": {"fa": "🌐 زبان‌های دیگر", "uz": "🌐 Boshqa tillar", "ru": "🌐 Другие языки", "en": "🌐 Other languages", "ar": "🌐 لغات أخرى"},
 
 "catalog": {
@@ -39,11 +43,11 @@ T = {
 },
 
 "contacts": {
-"fa": f"📞 <b>تماس با PLAYMAX</b>\n\n🇦🇫 افغانستان: <code>{PHONE_AF}</code> (واتس‌اپ هم)\n🇺🇿 ازبکستان: <code>{P1}</code>\n🇺🇿 ازبکستان: <code>{P2}</code>\n\n✉️ {LINKS['email']}\n🌐 {LINKS['site']}",
-"uz": f"📞 <b>PLAYMAX bilan aloqa</b>\n\n🇺🇿 O‘zbekiston: <code>{P1}</code>\n🇺🇿 O‘zbekiston: <code>{P2}</code>\n🇦🇫 Afg‘oniston: <code>{PHONE_AF}</code> (WhatsApp ham)\n\n✉️ {LINKS['email']}\n🌐 {LINKS['site']}",
-"ru": f"📞 <b>Связь с PLAYMAX</b>\n\n🇺🇿 Узбекистан: <code>{P1}</code>\n🇺🇿 Узбекистан: <code>{P2}</code>\n🇦🇫 Афганистан: <code>{PHONE_AF}</code> (есть WhatsApp)\n\n✉️ {LINKS['email']}\n🌐 {LINKS['site']}",
-"en": f"📞 <b>Contact PLAYMAX</b>\n\n🇺🇿 Uzbekistan: <code>{P1}</code>\n🇺🇿 Uzbekistan: <code>{P2}</code>\n🇦🇫 Afghanistan: <code>{PHONE_AF}</code> (WhatsApp too)\n\n✉️ {LINKS['email']}\n🌐 {LINKS['site']}",
-"ar": f"📞 <b>تواصل مع PLAYMAX</b>\n\n🇺🇿 أوزبكستان: <code>{P1}</code>\n🇺🇿 أوزبكستان: <code>{P2}</code>\n🇦🇫 أفغانستان: <code>{PHONE_AF}</code> (واتساب أيضاً)\n\n✉️ {LINKS['email']}\n🌐 {LINKS['site']}",
+"fa": f"📞 <b>تماس با PLAYMAX</b>\n\n🇦🇫 افغانستان: <code>{PHONE_AF}</code> (واتس‌اپ / تلگرام)\n🇺🇿 ازبکستان: <code>{P1}</code>\n🇺🇿 ازبکستان: <code>{P2}</code>\n\n✉️ {LINKS['email']}\n🌐 {LINKS['site']}",
+"uz": f"📞 <b>PLAYMAX bilan aloqa</b>\n\n🇺🇿 O‘zbekiston: <code>{P1}</code>\n🇺🇿 O‘zbekiston: <code>{P2}</code>\n🇦🇫 Afg‘oniston: <code>{PHONE_AF}</code> (WhatsApp / Telegram)\n\n✉️ {LINKS['email']}\n🌐 {LINKS['site']}",
+"ru": f"📞 <b>Связь с PLAYMAX</b>\n\n🇺🇿 Узбекистан: <code>{P1}</code>\n🇺🇿 Узбекистан: <code>{P2}</code>\n🇦🇫 Афганистан: <code>{PHONE_AF}</code> (WhatsApp / Telegram)\n\n✉️ {LINKS['email']}\n🌐 {LINKS['site']}",
+"en": f"📞 <b>Contact PLAYMAX</b>\n\n🇺🇿 Uzbekistan: <code>{P1}</code>\n🇺🇿 Uzbekistan: <code>{P2}</code>\n🇦🇫 Afghanistan: <code>{PHONE_AF}</code> (WhatsApp / Telegram)\n\n✉️ {LINKS['email']}\n🌐 {LINKS['site']}",
+"ar": f"📞 <b>تواصل مع PLAYMAX</b>\n\n🇺🇿 أوزبكستان: <code>{P1}</code>\n🇺🇿 أوزبكستان: <code>{P2}</code>\n🇦🇫 أفغانستان: <code>{PHONE_AF}</code> (واتساب / تليجرام)\n\n✉️ {LINKS['email']}\n🌐 {LINKS['site']}",
 },
 
 "places": {
@@ -65,11 +69,11 @@ T = {
 },
 
 "social": {
-"fa": "📸 <b>PLAYMAX در شبکه‌های اجتماعی</b>\n\nویدیوهای تازه، ماشین‌های جدید و نظر مشتری‌ها 👇",
-"uz": "📸 <b>PLAYMAX ijtimoiy tarmoqlarda</b>\n\nYangi videolar, yangi avtomatlar va mijozlar fikri 👇",
-"ru": "📸 <b>PLAYMAX в соцсетях</b>\n\nСвежие видео, новые автоматы и отзывы клиентов 👇",
-"en": "📸 <b>PLAYMAX on social media</b>\n\nFresh videos, new machines and customer stories 👇",
-"ar": "📸 <b>PLAYMAX على مواقع التواصل</b>\n\nفيديوهات جديدة، أجهزة جديدة وآراء العملاء 👇",
+"fa": "🌐 <b>سایت و شبکه‌های PLAYMAX</b>\n\nسایت رسمی: کاتالوگ کامل، رنگ‌ها و سفارش آنلاین.\nاینستاگرام: ویدیوهای تازه و ماشین‌های جدید 👇",
+"uz": "🌐 <b>PLAYMAX sayti va tarmoqlari</b>\n\nRasmiy sayt: to‘liq katalog, ranglar va onlayn buyurtma.\nInstagram: yangi videolar va yangi avtomatlar 👇",
+"ru": "🌐 <b>Сайт и соцсети PLAYMAX</b>\n\nОфициальный сайт: полный каталог, цвета и онлайн-заказ.\nInstagram: свежие видео и новые автоматы 👇",
+"en": "🌐 <b>PLAYMAX website & socials</b>\n\nOfficial website: full catalog, colours and online ordering.\nInstagram: fresh videos and new machines 👇",
+"ar": "🌐 <b>موقع PLAYMAX وحساباتنا</b>\n\nالموقع الرسمي: الكتالوج الكامل والألوان والطلب أونلاين.\nإنستغرام: فيديوهات وأجهزة جديدة أولاً بأول 👇",
 },
 
 "consult": {
