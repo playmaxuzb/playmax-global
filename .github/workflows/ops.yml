@@ -1,0 +1,14 @@
+name: ops
+on:
+  push:
+    paths: ["ops/photos"]
+permissions:
+  contents: read
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cd bot && python3 ops_photos.py
+        env:
+          TG_AF_TOKEN: ${{ secrets.TG_AF_TOKEN }}
