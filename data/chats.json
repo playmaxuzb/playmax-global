@@ -4,5 +4,15 @@
   "type": "channel",
   "username": "PlaymaxUZ_AF",
   "linked_chat_id": null
+ },
+ "-2073916637215": {
+  "title": "Playmax",
+  "type": "supergroup",
+  "username": null
+ },
+ "-1004490358064": {
+  "title": "PLAYMAX Market",
+  "type": "supergroup",
+  "username": null
  }
 }
