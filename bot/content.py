@@ -49,3 +49,21 @@ def bot_keyboard(p, lang):
     rows.append([(t("b_order_short", lang), LINKS["site"]), (t("b_consult", lang), "cb:m:consult")])
     rows.append([(t("b_back", lang), "cb:m:menu")])
     return rows
+
+
+def deliver(chat, p, lang, markup):
+    """Send post p to a private chat in `lang`."""
+    from tg import call
+    cap = caption(p, lang)
+    url = media_url(p)
+    typ = p.get("type")
+    if typ == "poll":
+        q = p["poll"]["q"].get(lang, p["poll"]["q"]["en"])
+        opts = p["poll"]["o"].get(lang, p["poll"]["o"]["en"])
+        return call("sendPoll", chat_id=chat, question=q, options=[{"text": o} for o in opts], is_anonymous=True,
+                    reply_markup=markup)
+    if typ == "photo" and url:
+        return call("sendPhoto", chat_id=chat, photo=url, caption=cap, parse_mode="HTML", reply_markup=markup)
+    if typ in ("video", "animation") and url:
+        return call("sendVideo", chat_id=chat, video=url, caption=cap, parse_mode="HTML", reply_markup=markup, supports_streaming=True)
+    return call("sendMessage", chat_id=chat, text=cap, parse_mode="HTML", reply_markup=markup, disable_web_page_preview=True)

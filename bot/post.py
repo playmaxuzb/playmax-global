@@ -31,6 +31,20 @@ def publish(p):
     return call("sendMessage", text=cap, parse_mode="HTML", disable_web_page_preview=True, **base)
 
 
+def broadcast(p):
+    """Send the post to every bot subscriber in the language they chose."""
+    import time
+    try:
+        users = json.load(open(os.path.join(content.ROOT, "data", "users.json")))
+    except Exception:
+        return
+    for uid, lang in users.items():
+        if lang == "off":
+            continue
+        content.deliver(int(uid), p, lang, kb(content.bot_keyboard(p, lang)))
+        time.sleep(0.06)
+
+
 def main():
     force = sys.argv[1] if len(sys.argv) > 1 else None
     try:
@@ -51,6 +65,7 @@ def main():
             posted[pid] = {"message_id": res.get("message_id"), "at": now.isoformat(timespec="minutes")}
             changed = True
             print("posted", pid)
+            broadcast(p)
             if p.get("pin"):
                 call("pinChatMessage", chat_id=CHANNEL, message_id=res["message_id"], disable_notification=True)
     if changed:

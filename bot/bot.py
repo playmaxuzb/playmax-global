@@ -5,6 +5,7 @@ import subprocess
 import time
 
 import content
+import market
 from config import LANGS, FLAGS, LANG_NAMES, LINKS, OFFICE, FACTORY, map_lang, PHONE_AF
 from i18n import t
 from tg import call, kb, LAST_ERROR
@@ -70,6 +71,7 @@ def menu_kb(lang):
         [(t("b_catalog", lang), "cb:m:catalog")],
         [(t("b_contacts", lang), "cb:m:contacts"), (t("b_places", lang), "cb:m:places")],
         [(t("b_channels", lang), "cb:m:channels"), (t("b_social", lang), "cb:m:social")],
+        [(market.m("b_market", lang), "cb:m:market"), (market.m("b_sell", lang), "cb:mk:start")],
         [(t("b_consult", lang), "cb:m:consult")],
         [(t("b_lang", lang), "cb:m:lang")],
     ])
@@ -100,6 +102,8 @@ def screen(chat, lang, name, edit_id=None):
         ])
     elif name == "consult":
         text, markup = t("consult", lang), back(lang, [[(t("b_wa", lang), LINKS["wa_af"])], [(t("b_site", lang), LINKS["site"])]])
+    elif name == "market":
+        return market.show_intro(chat, int(chat), lang)
     elif name == "lang":
         text, markup = t("choose", lang), lang_picker()
     elif name == "pins":
@@ -120,37 +124,26 @@ def send_post(chat, pid, lang):
     p = POSTS.get(pid)
     if not p:
         return screen(chat, lang, "menu")
-    cap = content.caption(p, lang)
-    markup = kb(content.bot_keyboard(p, lang))
-    url = content.media_url(p)
-    typ = p.get("type")
-    if typ == "poll":
-        q = p["poll"]["q"].get(lang, p["poll"]["q"]["en"])
-        opts = p["poll"]["o"].get(lang, p["poll"]["o"]["en"])
-        body = f"📊 <b>{q}</b>\n\n" + "\n".join(f"• {o}" for o in opts)
-        return call("sendMessage", chat_id=chat, text=body, parse_mode="HTML", reply_markup=markup)
-    if typ == "photo" and url:
-        return call("sendPhoto", chat_id=chat, photo=url, caption=cap, parse_mode="HTML", reply_markup=markup)
-    if typ in ("video", "animation") and url:
-        return call("sendVideo", chat_id=chat, video=url, caption=cap, parse_mode="HTML", reply_markup=markup, supports_streaming=True)
-    return call("sendMessage", chat_id=chat, text=cap, parse_mode="HTML", reply_markup=markup, disable_web_page_preview=True)
+    return content.deliver(chat, p, lang, kb(content.bot_keyboard(p, lang)))
 
 
 # ---------- handlers ----------
-def market_hook(msg):
-    """Replaced by market.py moderation once the market module is loaded."""
-    return None
-
 
 def on_message(msg):
     chat = msg["chat"]["id"]
     if msg["chat"]["type"] != "private":
-        return market_hook(msg)
+        return market.group_message(msg)
     user = msg["from"]
     text = msg.get("text", "")
     lang = lang_of(user)
+    if market.in_sell(user["id"]) and not text.startswith("/"):
+        return market.sell_message(msg, lang)
     if text.startswith("/start"):
         arg = text.split(" ", 1)[1] if " " in text else ""
+        if arg == "sell" or arg == "market" or arg.startswith(("seller_", "photos_")):
+            if str(user["id"]) not in USERS:
+                set_lang(user, lang)
+            return market.deep_link(chat, user["id"], arg, lang)
         if arg.startswith("p_"):
             parts = arg.split("_")
             pl = parts[-1] if parts[-1] in LANGS else lang
@@ -166,7 +159,9 @@ def on_message(msg):
             return call("sendMessage", chat_id=chat, text=t("choose", lang), reply_markup=lang_picker())
         return screen(chat, lang, "menu")
     cmd = text.lstrip("/").split("@")[0].lower()
-    if cmd in ("menu", "catalog", "contacts", "places", "channels", "social", "consult", "lang"):
+    if cmd == "sell":
+        return market.start_sell(chat, user["id"], lang)
+    if cmd in ("menu", "catalog", "contacts", "places", "channels", "social", "consult", "lang", "market"):
         return screen(chat, lang, cmd)
     if cmd == "language":
         return screen(chat, lang, "lang")
@@ -182,12 +177,16 @@ def on_callback(cq):
     lang = lang_of(user)
     call("answerCallbackQuery", callback_query_id=cq["id"])
     kind, _, rest = data.partition(":")
+    if data == "mk:start":
+        return market.start_sell(chat, user["id"], lang)
+    if kind == "mk":
+        return market.on_callback(cq, lang)
     if kind == "L":
         set_lang(user, rest)
         return screen(chat, rest, "menu", edit_id=mid)
     if kind == "m":
         editable = bool(msg.get("text"))
-        return screen(chat, lang, rest, edit_id=mid if editable and rest != "pins" else None)
+        return screen(chat, lang, rest, edit_id=mid if editable and rest not in ("pins", "market") else None)
     if kind == "tr":
         pid, _, l = rest.rpartition(":")
         set_lang(user, l)
@@ -197,6 +196,9 @@ def on_callback(cq):
 # ---------- persistence ----------
 def save_users(push=False):
     global DIRTY
+    if market.STATE["dirty"]:
+        market.save()
+        DIRTY = True
     if not DIRTY:
         return
     os.makedirs(os.path.dirname(USERS_F), exist_ok=True)
@@ -210,7 +212,7 @@ def save_users(push=False):
         json.dump(STATUS, f, indent=1)
     DIRTY = False
     if push:
-        git_sync(["data/users.json", "data/chats.json", "data/status.json"], "bot: save state")
+        git_sync(["data/users.json", "data/chats.json", "data/status.json", "data/market.json"], "bot: save state")
 
 
 def git_sync(files, message):
@@ -227,10 +229,18 @@ def git_sync(files, message):
         print("[git]", e)
 
 
+def code_hash():
+    r = subprocess.run(["git", "rev-parse", "HEAD:bot"], cwd=ROOT, capture_output=True, text=True)
+    return r.stdout.strip()
+
+
 def refresh_content():
+    """Pull new content; return True when the bot code itself changed (time to restart)."""
     global POSTS
+    before = code_hash()
     subprocess.run(["git", "pull", "-q", "--rebase", "--autostash"], cwd=ROOT)
     POSTS = content.load_all()
+    return code_hash() != before
 
 
 def main():
@@ -238,8 +248,11 @@ def main():
     offset = None
     last_refresh = time.time()
     print("bot started, posts:", len(POSTS))
+    import setup_bot
+    setup_bot.run()
+    market.setup_group()
     while time.time() - start < RUN_SECONDS:
-        updates = call("getUpdates", offset=offset, timeout=50,
+        updates = call("getUpdates", offset=offset, timeout=20,
                        allowed_updates=["message", "callback_query", "my_chat_member", "channel_post", "edited_message"]) or []
         for u in updates:
             offset = u["update_id"] + 1
@@ -254,10 +267,15 @@ def main():
                     on_callback(u["callback_query"])
             except Exception as e:
                 print("[handler]", e)
+        market.tick()
+        if market.STATE["dirty"] and time.time() - last_refresh > 120:
+            last_refresh = 0
         if time.time() - last_refresh > (120 if time.time() - start < 1800 else 900):
             globals()["DIRTY"] = True
             save_users(push=True)
-            refresh_content()
+            if refresh_content():
+                print("code updated — handing over to the next shift")
+                break
             last_refresh = time.time()
     # confirm the last offset so the next shift doesn't repeat updates
     if offset:
