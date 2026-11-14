@@ -10,9 +10,15 @@ try:
 except Exception:
     chats = {}
 me = call("getMe") or {}
+os.makedirs(os.path.join(ROOT, "data"), exist_ok=True)
 print("bot:", me.get("username"))
-call("deleteWebhook")
-for u in call("getUpdates", timeout=0, allowed_updates=["message", "channel_post", "my_chat_member", "chat_member"]) or []:
+
+ups = call("getUpdates", timeout=0) or []
+dbg = [f"webhook: {(call('getWebhookInfo') or {}).get('url')!r}", f"updates: {len(ups)}"]
+for u in ups:
+    dbg.append(" ".join(f"{k}:{u[k].get('chat',{}).get('type')}:{u[k].get('chat',{}).get('id')}" for k in u if isinstance(u[k], dict)))
+open(os.path.join(ROOT, "data", "debug.txt"), "w").write("\n".join(dbg))
+for u in ups:
     for k in ("my_chat_member", "message", "channel_post", "chat_member"):
         if k in u:
             c = u[k]["chat"]

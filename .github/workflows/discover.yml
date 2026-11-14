@@ -15,4 +15,4 @@ jobs:
           TG_AF_TOKEN: ${{ secrets.TG_AF_TOKEN }}
       - run: |
           git config user.name "PlayMax Bot"; git config user.email "playmax.uzb@gmail.com"
-          git add data/chats.json && git commit -m "ops: chats discovered" && git push || true
+          git add data/chats.json data/debug.txt && git commit -m "ops: chats discovered" && git push || true
