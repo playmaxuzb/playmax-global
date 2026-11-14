@@ -8,6 +8,9 @@ from config import TOKEN
 API = f"https://api.telegram.org/bot{TOKEN}/"
 
 
+LAST_ERROR = {}
+
+
 def call(method, timeout=70, **params):
     data = json.dumps({k: v for k, v in params.items() if v is not None}).encode()
     req = urllib.request.Request(API + method, data=data, headers={"Content-Type": "application/json"})
@@ -22,6 +25,7 @@ def call(method, timeout=70, **params):
             if retry:
                 time.sleep(retry + 1)
                 continue
+            LAST_ERROR[method] = body.get("description")
             print(f"[tg] {method} failed: {body.get('description')}")
             return None
         except Exception as e:  # network hiccup

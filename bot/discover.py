@@ -1,6 +1,6 @@
 """List the chats the bot was added to (from pending updates) and save them to data/chats.json."""
 import json, os
-from tg import call
+from tg import call, LAST_ERROR
 import content
 
 ROOT = content.ROOT
@@ -14,7 +14,7 @@ os.makedirs(os.path.join(ROOT, "data"), exist_ok=True)
 print("bot:", me.get("username"))
 
 ups = call("getUpdates", timeout=0) or []
-dbg = [f"me: {me.get('username')} name={me.get('first_name')} {me.get('can_read_all_group_messages')}", f"webhook: {(call('getWebhookInfo') or {}).get('url')!r}", f"updates: {len(ups)}"]
+dbg = [f"me: {me.get('username')} name={me.get('first_name')} {me.get('can_read_all_group_messages')}", f"webhook: {(call('getWebhookInfo') or {}).get('url')!r}", f"updates: {len(ups)}", f"errors: {LAST_ERROR}"]
 for u in ups:
     dbg.append(" ".join(f"{k}:{u[k].get('chat',{}).get('type')}:{u[k].get('chat',{}).get('id')}" for k in u if isinstance(u[k], dict)))
 open(os.path.join(ROOT, "data", "debug.txt"), "w").write("\n".join(dbg))
@@ -34,6 +34,7 @@ for ch in ["@PlaymaxUZ_AF"]:
     if info:
         chats[str(info["id"])] = {"title": info.get("title"), "type": info["type"], "username": info.get("username"), "linked_chat_id": info.get("linked_chat_id")}
 a = call("getChatMember", chat_id="@PlaymaxUZ_AF", user_id=me.get("id")) or {}
+dbg.append(f"errors2: {LAST_ERROR}")
 dbg.append(f"main channel status: {a.get('status')}")
 open(os.path.join(ROOT, "data", "debug.txt"), "w").write("\n".join(dbg))
 os.makedirs(os.path.dirname(F), exist_ok=True)
