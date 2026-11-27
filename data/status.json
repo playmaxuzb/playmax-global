@@ -1,6 +1,8 @@
 {
  "updates": 0,
  "started": "2026-11-26 19:40 UTC",
- "errors": {},
- "saved": "2026-11-27 01:10 UTC"
+ "errors": {
+  "getUpdates": "Bad Gateway"
+ },
+ "saved": "2026-11-27 01:25 UTC"
 }
